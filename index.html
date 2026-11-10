@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LYRA AI STUDIO</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#090e1b;color:white;font-family:Arial,sans-serif}
+header{padding:20px;background:#121d30;border-bottom:1px solid #30415c}
+header h2{margin:0;color:#9dc4ff}
+header p{margin:6px 0 0;color:#9baec9;font-size:12px}
+main{max-width:750px;margin:auto;padding:20px}
+h1{font-size:28px}
+.desc{color:#a8b7cd;line-height:1.6}
+.card{background:#142137;border:1px solid #30425f;border-radius:15px;padding:17px;margin:20px 0}
+label{display:block;margin:15px 0 9px;font-weight:bold}
+textarea,select{width:100%;padding:13px;background:#091426;color:white;border:1px solid #405575;border-radius:9px;font-size:15px}
+textarea{height:120px;resize:vertical}
+button{width:100%;padding:14px;border:0;border-radius:9px;background:#557de4;color:white;font-weight:bold;font-size:15px;margin-top:15px}
+.secondary{background:#263b59}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tile{background:#1b2b44;padding:17px;border-radius:12px;border:1px solid #344a6c}
+.tile b{display:block;margin-bottom:8px}
+.tile small{color:#a9b9d0}
+#result{display:none;background:#0a172a;border-radius:10px;padding:15px;margin-top:15px;line-height:1.6;white-space:pre-wrap}
+footer{text-align:center;color:#8293ad;padding:25px;font-size:12px}
+</style>
+</head>
+<body>
+<header>
+<h2>✦ LYRA AI STUDIO</h2>
+<p>CREATIVE INTELLIGENCE PLATFORM</p>
+</header>
+<main>
+<h1>Wujudkan Imajinasi Kamu</h1>
+<p class="desc">Studio kreatif untuk merancang video, karakter, dan cerita sinematik dengan bantuan kecerdasan buatan.</p>
+
+<div class="card">
+<h3>🎬 Video Generator</h3>
+<label>Deskripsikan video yang ingin dibuat</label>
+<textarea id="prompt" placeholder="Contoh: Seorang pria berjalan di tengah hujan, suasana sinematik..."></textarea>
+
+<label>Jenis kreasi</label>
+<select id="mode">
+<option>Text to Video</option>
+<option>Image to Video</option>
+<option>Character Animation</option>
+<option>Cinematic Scene</option>
+</select>
+
+<label>Gaya video</label>
+<select id="style">
+<option>Realistis Sinematik</option>
+<option>Film Hollywood</option>
+<option>Anime</option>
+<option>Dokumenter</option>
+<option>Fantasi</option>
+</select>
+
+<button onclick="generate()">✨ BUAT KONSEP VIDEO</button>
+<div id="result"></div>
+<button class="secondary" onclick="copyPrompt()">SALIN PROMPT</button>
+</div>
+
+<h3>Studio Kreatif</h3>
+<div class="grid">
+<div class="tile"><b>🎬 Video Generator</b><small>Konsep pembuatan video</small></div>
+<div class="tile"><b>🖼️ Image Studio</b><small>Pengembangan gambar</small></div>
+<div class="tile"><b>👤 Character Studio</b><small>Perancangan karakter</small></div>
+<div class="tile"><b>🎞️ Scene Builder</b><small>Perancangan adegan</small></div>
+<div class="tile"><b>🎵 Audio Studio</b><small>Konsep suara dan musik</small></div>
+<div class="tile"><b>🤖 Lyra Assistant</b><small>Asisten kreatif AI</small></div>
+</div>
+<div class="card">
+<h3>🌟 Tentang LYRA</h3>
+<p class="desc">LYRA AI STUDIO adalah proyek pengembangan platform kreatif AI independen yang dirancang untuk membantu siapa saja mewujudkan ide menjadi karya visual.</p>
+</div>
+</main>
+<footer>LYRA AI STUDIO © 2026<br>BUILDING THE FUTURE</footer>
+
+<script>
+let finalPrompt="";
+
+function generate(){
+ const p=document.getElementById("prompt").value.trim();
+ const m=document.getElementById("mode").value;
+ const s=document.getElementById("style").value;
+ if(!p){
+ alert("Silakan tulis deskripsi video terlebih dahulu.");
+ return;
+ }
+ finalPrompt="Jenis: "+m+"\nGaya: "+s+"\nDeskripsi: "+p+"\nKualitas: Detail tinggi, pencahayaan sinematik, gerakan natural, komposisi profesional.";
+ const r=document.getElementById("result");
+ r.style.display="block";
+ r.textContent="Konsep video berhasil disusun!\n\n"+finalPrompt+"\n\nCatatan: Ini masih generator konsep prompt, belum merender video.";
+}
+
+function copyPrompt(){
+ if(!finalPrompt){
+ alert("Buat konsep video terlebih dahulu.");
+ return;
+ }
+ if(navigator.clipboard){
+ navigator.clipboard.writeText(finalPrompt)
+ .then(()=>alert("Prompt berhasil disalin!"))
+ .catch(()=>alert("Silakan salin teks dari hasil konsep."));
+ }else{
+ alert("Salin teks dari hasil konsep secara manual.");
+ }
+}
+</script>
+</body>
+</html>
